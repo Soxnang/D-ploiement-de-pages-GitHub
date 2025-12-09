@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGONE NIANG - Junior Devops-DevSecOps-AWS Cloud</title>
+    <title>NGONE NIANG - Junior DevOps-DevSecOps-AWS Cloud</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -363,7 +363,121 @@
             font-size: 0.9rem;
         }
 
-        /* Contact Section - Inspiré de adityacprtm.dev */
+        /* Certifications Section */
+        .certifications-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .certification-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .certification-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .certification-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .certification-title h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .certification-issuer {
+            color: var(--gray);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .certification-issuer i {
+            color: var(--primary);
+        }
+
+        .certification-details {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .certification-details p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .certification-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-small {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-view {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-download {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-download:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
         .contact-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -599,6 +713,10 @@
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
+
+            .certifications-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -637,6 +755,19 @@
 
             .contact-form-container {
                 padding: 2rem;
+            }
+
+            .certification-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .certification-icon {
+                margin-bottom: 1rem;
+            }
+
+            .certification-actions {
+                flex-direction: column;
             }
         }
 
@@ -709,6 +840,64 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* View PDF Modal */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .pdf-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .pdf-modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            height: 90%;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pdf-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .pdf-modal-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: calc(100% - 60px);
+        }
     </style>
 </head>
 <body>
@@ -727,6 +916,7 @@
                 <li><a href="#home" class="active">Accueil</a></li>
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#skills">Compétences</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#experience">Expérience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -740,14 +930,14 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>NGONE NIANG</h1>
-                    <div class="subtitle">Junior Devops-DevSecOps-AWS Cloud</div>
+                    <div class="subtitle">Junior DevOps-DevSecOps-AWS Cloud</div>
                     <p>Passionnée par la conception d'architectures cloud robustes et évolutives. Expertise en AWS, Docker, Kubernetes et DevOps. Toujours à la recherche de défis techniques stimulants.</p>
                     <div class="cta-buttons">
-                        <a href="#contact" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i> Me Contacter
+                        <a href="#certifications" class="btn btn-primary">
+                            <i class="fas fa-award"></i> Voir mes Certifications
                         </a>
-                        <a href="#skills" class="btn btn-outline">
-                            <i class="fas fa-code"></i> Mes Compétences
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-envelope"></i> Me Contacter
                         </a>
                     </div>
                 </div>
@@ -809,7 +999,7 @@
                 <div class="skill-card">
                     <h3>Technologies Cloud</h3>
                     <ul class="skill-list">
-                        <li><i class="fas fa-check-circle"></i> AWS Cloud Services</li>
+                        <li><i class="fas fa-check-circle"></i> AWS Cloud Services (EC2, VPC, S3)</li>
                         <li><i class="fas fa-check-circle"></i> Docker & Containers</li>
                         <li><i class="fas fa-check-circle"></i> Kubernetes & Orchestration</li>
                         <li><i class="fas fa-check-circle"></i> Infrastructure as Code</li>
@@ -829,20 +1019,300 @@
                 </div>
                 
                 <div class="skill-card">
-                    <h3>Certifications</h3>
+                    <h3>Outils & Technologies</h3>
                     <ul class="skill-list">
-                        <li><i class="fas fa-award"></i> AWS Cloud Practitioner</li>
-                        <li><i class="fas fa-award"></i> DevOps: Code, Build and Test</li>
-                        <li><i class="fas fa-award"></i> Introduction to Cloud Computing</li>
-                        <li><i class="fas fa-award"></i> Introduction to Data Engineering</li>
-                        <li><i class="fas fa-award"></i> Introduction to DevOps</li>
+                        <li><i class="fas fa-check-circle"></i> Power BI & Tableaux de bord</li>
+                        <li><i class="fas fa-check-circle"></i> Microsoft SQL Server</li>
+                        <li><i class="fas fa-check-circle"></i> HTML/CSS/JavaScript</li>
+                        <li><i class="fas fa-check-circle"></i> Linux/Unix Systems</li>
+                        <li><i class="fas fa-check-circle"></i> Agile/Scrum Methodologies</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section - Inspiré de adityacprtm.dev -->
+    <!-- Certifications Section -->
+    <section class="certifications-section" id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Certifications</h2>
+                <p>Qualifications et certifications professionnelles attestant de mes compétences</p>
+            </div>
+            
+            <div class="certifications-grid">
+                <!-- Introduction to DevOps -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>Introduction to DevOps</h3>
+                            <div class="certification-issuer">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Coursera / IBM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Certification d'introduction aux principes et pratiques DevOps, incluant la culture DevOps, l'automatisation, la mesure et le partage (CAMS).</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="certifications/introduction devops.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le PDF
+                        </a>
+                        <a href="certifications/introduction devops.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Introduction to Cloud Computing -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>Introduction to Cloud Computing</h3>
+                            <div class="certification-issuer">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Coursera / IBM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Certification d'introduction aux concepts fondamentaux du cloud computing, incluant les modèles de service (IaaS, PaaS, SaaS) et les principaux fournisseurs.</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="certifications/introduction to Cloud Computing.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le PDF
+                        </a>
+                        <a href="certifications/introduction to Cloud Computing.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- DevOps on AWS: Code, Build, and Test -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>DevOps on AWS: Code, Build, and Test</h3>
+                            <div class="certification-issuer">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Coursera / AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Certification spécialisée sur les pratiques DevOps sur AWS, couvrant le code, la construction et les tests avec les services AWS.</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="certifications/DevOps on AWS Code, Build, and Test.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le PDF
+                        </a>
+                        <a href="certifications/DevOps on AWS Code, Build, and Test.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Introduction to Data Engineering -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>Introduction to Data Engineering</h3>
+                            <div class="certification-issuer">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Coursera / IBM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Certification couvrant les bases de l'ingénierie des données, incluant les pipelines de données, le stockage et le traitement de données à grande échelle.</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="certifications/Introduction to Data Engineering.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le PDF
+                        </a>
+                        <a href="certifications/Introduction to Data Engineering.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- AWS VPC -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>AWS Virtual Private Cloud (VPC)</h3>
+                            <div class="certification-issuer">
+                                <i class="fab fa-aws"></i>
+                                <span>Amazon Web Services</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Certification sur la configuration et la gestion des réseaux privés virtuels (VPC) sur AWS pour des architectures réseau sécurisées et évolutives.</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="certifications/VPC AWS.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le PDF
+                        </a>
+                        <a href="certifications/VPC AWS.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- AWS EC2 -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>AWS Elastic Compute Cloud (EC2)</h3>
+                            <div class="certification-issuer">
+                                <i class="fab fa-aws"></i>
+                                <span>Amazon Web Services</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Certification sur la gestion des instances EC2, incluant le déploiement, la configuration, la sécurité et l'optimisation des instances virtuelles AWS.</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="certifications/AWS EC2.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le PDF
+                        </a>
+                        <a href="certifications/AWS EC2.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Formation Orange Digital Center -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>Formation Cloud & DevOps</h3>
+                            <div class="certification-issuer">
+                                <i class="fas fa-building"></i>
+                                <span>Orange Digital Center</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Formation intensive de 6 mois (Mars - Août 2024) en Cloud Computing et DevOps, couvrant AWS, Docker, Kubernetes, CI/CD et les architectures cloud modernes.</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="NGONE_NIANG_CV.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le CV
+                        </a>
+                        <a href="NGONE_NIANG_CV.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Licence en Informatique -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="certification-title">
+                            <h3>Licence en Informatique</h3>
+                            <div class="certification-issuer">
+                                <i class="fas fa-university"></i>
+                                <span>Université</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-details">
+                        <p>Diplôme de licence en informatique avec option développement web (2020-2023). Formation complète en programmation, bases de données et architectures logiciels.</p>
+                    </div>
+                    <div class="certification-actions">
+                        <a href="NGONE_NIANG_CV.pdf" class="btn-small btn-view" target="_blank">
+                            <i class="fas fa-eye"></i> Voir le CV
+                        </a>
+                        <a href="NGONE_NIANG_CV.pdf" class="btn-small btn-download" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="certifications/all_certifications.zip" class="btn btn-primary" download>
+                    <i class="fas fa-file-archive"></i> Télécharger Toutes les Certifications (ZIP)
+                </a>
+                <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> 
+                    Toutes les certifications sont disponibles en téléchargement individuel ou groupé
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Expériences Professionnelles</h2>
+                <p>Projets et réalisations dans le domaine du Cloud et DevOps</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Application de Gestion du Personnel</h3>
+                    <p>Mise en place d'une application offrant des fonctionnalités de planification, de suivi des présences et de gestion des congés.</p>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Architecture cloud AWS</li>
+                        <li><i class="fas fa-check"></i> Base de données MySQL</li>
+                        <li><i class="fas fa-check"></i> Interface Laravel</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Application d'Inscription aux Événements</h3>
+                    <p>Développement d'une application permettant aux utilisateurs de s'inscrire facilement à des événements, programmes ou services.</p>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Gestion des inscriptions</li>
+                        <li><i class="fas fa-check"></i> Base de données SQL Server</li>
+                        <li><i class="fas fa-check"></i> API RESTful</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Application de Gestion des Faits d'État Civil</h3>
+                    <p>Projet de fin d'études : application robuste et sécurisée pour la gestion des faits d'état civil (naissances, mariages, décès).</p>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Sécurité des données</li>
+                        <li><i class="fas fa-check"></i> Conformité légale</li>
+                        <li><i class="fas fa-check"></i> Protection de la vie privée</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="contact-container">
@@ -938,7 +1408,7 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <h3>NGONE NIANG</h3>
-                    <p>Architecte Cloud Junior passionnée par l'innovation technologique et l'optimisation d'infrastructure.</p>
+                    <p>Junior DevOps-DevSecOps-AWS Cloud passionnée par l'innovation technologique et l'optimisation d'infrastructure.</p>
                 </div>
                 
                 <div class="footer-col">
@@ -947,25 +1417,42 @@
                         <li><a href="#home">Accueil</a></li>
                         <li><a href="#about">À propos</a></li>
                         <li><a href="#skills">Compétences</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#experience">Expérience</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h3>Contact</h3>
+                    <h3>Ressources</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:snac2214@gmail.com">snac2214@gmail.com</a></li>
-                        <li><a href="tel:+221782239691">+221 78 223 96 91</a></li>
-                        <li><a href="NGONE_NIANG_CV.pdf" download>Télécharger mon CV</a></li>
+                        <li><a href="NGONE_NIANG_CV.pdf" download>Mon CV (PDF)</a></li>
+                        <li><a href="#certifications">Mes Certifications</a></li>
+                        <li><a href="mailto:snac2214@gmail.com">Contact Professionnel</a></li>
+                        <li><a href="https://github.com/soxnangone" target="_blank">Mon GitHub</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>&copy; 2024 NGONE NIANG. Tous droits réservés.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Portfolio déployé avec GitHub Pages & GitHub Actions</p>
             </div>
         </div>
     </footer>
+
+    <!-- PDF Modal -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 id="pdfModalTitle">Certification</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <iframe class="pdf-viewer" id="pdfViewer" frameborder="0"></iframe>
+        </div>
+    </div>
 
     <script>
         // Navigation
@@ -1037,7 +1524,7 @@
             loadingSpinner.style.display = 'inline-block';
             submitBtn.disabled = true;
             
-            // Simulate form submission (in a real application, you would send this to a server)
+            // Simulate form submission
             await new Promise(resolve => setTimeout(resolve, 1500));
             
             // Show success message
@@ -1057,6 +1544,51 @@
                     successMessage.classList.remove('show');
                 }, 5000);
             }, 500);
+        });
+        
+        // PDF Modal functionality
+        const pdfModal = document.getElementById('pdfModal');
+        const pdfViewer = document.getElementById('pdfViewer');
+        const pdfModalTitle = document.getElementById('pdfModalTitle');
+        const closeModal = document.getElementById('closeModal');
+        
+        // Open PDF in modal
+        document.querySelectorAll('.btn-view').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pdfUrl = this.getAttribute('href');
+                const certificationName = this.closest('.certification-card').querySelector('h3').textContent;
+                
+                pdfModalTitle.textContent = certificationName;
+                pdfViewer.src = pdfUrl;
+                pdfModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            pdfModal.classList.remove('active');
+            pdfViewer.src = '';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        pdfModal.addEventListener('click', (e) => {
+            if (e.target === pdfModal) {
+                pdfModal.classList.remove('active');
+                pdfViewer.src = '';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+                pdfModal.classList.remove('active');
+                pdfViewer.src = '';
+                document.body.style.overflow = 'auto';
+            }
         });
         
         // Smooth scrolling for anchor links
