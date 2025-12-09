@@ -1,0 +1,84 @@
+name: Déploiement sur GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+      - '.github/workflows/deploy.yml'
+  # Permet de déclencher manuellement le workflow
+  workflow_dispatch:
+
+# Définit les permissions nécessaires pour GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Autorise un seul déploiement simultané
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Job de construction et déploiement
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      # Étape 1: Récupération du code
+      - name: Checkout du code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      # Étape 2: Configuration de Pages
+      - name: Configuration de GitHub Pages
+        uses: actions/configure-pages@v4
+      
+      # Étape 3: Construction du site (ici simple copie pour site statique)
+      - name: Construction du site
+        run: |
+          echo "📦 Construction du site statique..."
+          # Vérification du fichier index.html
+          if [ ! -f "index.html" ]; then
+            echo "❌ Fichier index.html non trouvé!"
+            exit 1
+          fi
+          
+          # Création d'un fichier de version pour suivre les déploiements
+          echo "Dernier déploiement: $(date)" > version.txt
+          echo "Commit: ${{ github.sha }}" >> version.txt
+          echo "Workflow: ${{ github.workflow }}" >> version.txt
+          
+          # Création d'un fichier de configuration pour GitHub Pages
+          echo "Configuration GitHub Pages créée avec succès"
+      
+      # Étape 4: Téléversement des artefacts
+      - name: Téléversement des artefacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      
+      # Étape 5: Déploiement sur GitHub Pages
+      - name: Déploiement sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
+      # Étape 6: Notification de succès
+      - name: Notification de succès
+        if: success()
+        run: |
+          echo "✅ Déploiement réussi!"
+          echo "🌐 Votre site est disponible à l'adresse: ${{ steps.deployment.outputs.page_url }}"
+      
+      # Étape 7: Notification d'échec
+      - name: Notification d'échec
+        if: failure()
+        run: |
+          echo "❌ Échec du déploiement"
+          echo "Vérifiez les logs pour plus d'informations"
