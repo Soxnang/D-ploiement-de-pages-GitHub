@@ -262,13 +262,15 @@
             justify-content: center;
             align-items: center;
             animation: float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
         }
 
         .profile-img {
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            border-radius: 50%;
             border: 8px solid var(--light);
             box-shadow: var(--shadow-lg);
         }
@@ -800,8 +802,7 @@
             }
 
             .profile-img {
-                width: 230px;
-                height: 230px;
+                border: 6px solid var(--light);
             }
         }
 
@@ -931,7 +932,7 @@
                 <div class="hero-text">
                     <h1>NGONE NIANG</h1>
                     <div class="subtitle">Junior DevOps-DevSecOps-AWS Cloud</div>
-                    <p>Passionnée par l'innovation technologique et spécialisée dans la conception d'architectures cloud sécurisées, évolutives et haute performance. Expertise pratique dans l'implémentation de solutions DevOps/DevSecOps sur AWS, avec une approche méthodique pour l'automatisation, la sécurité et l'optimisation des infrastructures..</p>
+                    <p>Passionnée par la conception d'architectures cloud robustes et évolutives. Expertise en AWS, Docker, Kubernetes et DevOps. Toujours à la recherche de défis techniques stimulants.</p>
                     <div class="cta-buttons">
                         <a href="#certifications" class="btn btn-primary">
                             <i class="fas fa-award"></i> Voir mes Certifications
@@ -943,8 +944,7 @@
                 </div>
                 <div class="hero-image">
                     <div class="profile-container">
-                        <img src"./ngone.jpeg" 
-                             alt="NGONE NIANG" class="profile-img">
+                        <img src="./ngone.jpeg" alt="NGONE NIANG" class="profile-img">
                     </div>
                 </div>
             </div>
@@ -1059,10 +1059,10 @@
                         <p>Certification d'introduction aux principes et pratiques DevOps, incluant la culture DevOps, l'automatisation, la mesure et le partage (CAMS).</p>
                     </div>
                     <div class="certification-actions">
-                        <a href="certifications/introduction devops.pdf" class="btn-small btn-view" target="_blank">
+                        <a href="Certifications/introduction devops.pdf" class="btn-small btn-view" target="_blank">
                             <i class="fas fa-eye"></i> Voir le PDF
                         </a>
-                        <a href="certifications/introduction devops.pdf" class="btn-small btn-download" download>
+                        <a href="Certifications/introduction devops.pdf" class="btn-small btn-download" download>
                             <i class="fas fa-download"></i> Télécharger
                         </a>
                     </div>
@@ -1086,10 +1086,10 @@
                         <p>Certification d'introduction aux concepts fondamentaux du cloud computing, incluant les modèles de service (IaaS, PaaS, SaaS) et les principaux fournisseurs.</p>
                     </div>
                     <div class="certification-actions">
-                        <a href="certifications/introduction to Cloud Computing.pdf" class="btn-small btn-view" target="_blank">
+                        <a href="Certifications/introduction to Cloud Computing.pdf" class="btn-small btn-view" target="_blank">
                             <i class="fas fa-eye"></i> Voir le PDF
                         </a>
-                        <a href="certifications/introduction to Cloud Computing.pdf" class="btn-small btn-download" download>
+                        <a href="Certifications/introduction to Cloud Computing.pdf" class="btn-small btn-download" download>
                             <i class="fas fa-download"></i> Télécharger
                         </a>
                     </div>
@@ -1113,7 +1113,7 @@
                         <p>Certification spécialisée sur les pratiques DevOps sur AWS, couvrant le code, la construction et les tests avec les services AWS.</p>
                     </div>
                     <div class="certification-actions">
-                        <a href="certifications/DevOps on AWS Code, Build, and Test.pdf" class="btn-small btn-view" target="_blank">
+                        <a href="Certifications/DevOps on AWS Code, Build, and Test.pdf" class="btn-small btn-view" target="_blank">
                             <i class="fas fa-eye"></i> Voir le PDF
                         </a>
                         <a href="certifications/DevOps on AWS Code, Build, and Test.pdf" class="btn-small btn-download" download>
@@ -1140,10 +1140,10 @@
                         <p>Certification couvrant les bases de l'ingénierie des données, incluant les pipelines de données, le stockage et le traitement de données à grande échelle.</p>
                     </div>
                     <div class="certification-actions">
-                        <a href="certifications/Introduction to Data Engineering.pdf" class="btn-small btn-view" target="_blank">
+                        <a href="Certifications/Introduction to Data Engineering.pdf" class="btn-small btn-view" target="_blank">
                             <i class="fas fa-eye"></i> Voir le PDF
                         </a>
-                        <a href="certifications/Introduction to Data Engineering.pdf" class="btn-small btn-download" download>
+                        <a href="Certifications/Introduction to Data Engineering.pdf" class="btn-small btn-download" download>
                             <i class="fas fa-download"></i> Télécharger
                         </a>
                     </div>
@@ -1167,10 +1167,10 @@
                         <p>Certification sur la configuration et la gestion des réseaux privés virtuels (VPC) sur AWS pour des architectures réseau sécurisées et évolutives.</p>
                     </div>
                     <div class="certification-actions">
-                        <a href="certifications/VPC AWS.pdf" class="btn-small btn-view" target="_blank">
+                        <a href="Certifications/VPC AWS.pdf" class="btn-small btn-view" target="_blank">
                             <i class="fas fa-eye"></i> Voir le PDF
                         </a>
-                        <a href="certifications/VPC AWS.pdf" class="btn-small btn-download" download>
+                        <a href="Certifications/VPC AWS.pdf" class="btn-small btn-download" download>
                             <i class="fas fa-download"></i> Télécharger
                         </a>
                     </div>
@@ -1194,10 +1194,10 @@
                         <p>Certification sur la gestion des instances EC2, incluant le déploiement, la configuration, la sécurité et l'optimisation des instances virtuelles AWS.</p>
                     </div>
                     <div class="certification-actions">
-                        <a href="certifications/AWS EC2.pdf" class="btn-small btn-view" target="_blank">
+                        <a href="Certifications/AWS EC2.pdf" class="btn-small btn-view" target="_blank">
                             <i class="fas fa-eye"></i> Voir le PDF
                         </a>
-                        <a href="certifications/AWS EC2.pdf" class="btn-small btn-download" download>
+                        <a href="Certifications/AWS EC2.pdf" class="btn-small btn-download" download>
                             <i class="fas fa-download"></i> Télécharger
                         </a>
                     </div>
