@@ -1,0 +1,57 @@
+
+name: Deploy to AWS Lightsail
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Ruby and Jekyll
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3'
+        bundler-cache: true
+        
+    - name: Build Jekyll site
+      run: |
+        bundle install
+        bundle exec jekyll build
+        
+    - name: Setup SSH
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        
+        # Ajouter le serveur aux known hosts
+        ssh-keyscan -H 3.10.152.99 >> ~/.ssh/known_hosts
+        
+    - name: Deploy to Lightsail
+      run: |
+        # Synchroniser les fichiers
+        rsync -avz --delete \
+          -e "ssh -i ~/.ssh/id_rsa" \
+          ./_site/ ubuntu@3.10.152.99:/var/www/portfolio/
+        
+        # Exécuter les commandes sur le serveur
+        ssh -i ~/.ssh/id_rsa ubuntu@3.10.152.99 << 'EOF'
+          # Mettre à jour les permissions
+          sudo chown -R www-data:www-data /var/www/portfolio
+          sudo chmod -R 755 /var/www/portfolio
+          
+          # Redémarrer Nginx
+          sudo systemctl restart nginx
+          
+          echo "✅ Déploiement réussi !"
+          echo "🌐 Accédez au site: http://3.10.152.99"
+        EOF
